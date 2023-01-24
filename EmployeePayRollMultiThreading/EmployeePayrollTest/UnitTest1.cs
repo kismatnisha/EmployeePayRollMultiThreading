@@ -21,7 +21,9 @@ namespace EmployeePayrollTest
             employees.Add(new EmployeeDetails(EmployeeID: 10, EmployeeName: "Naruto", PhoneNumber: "8123429025", Address: "Naruto", Department: "Hokage", Gender: 'M', BasicPay: 550000, Deductions: 300, TaxablePay: 100, Tax: 100, NetPay: 540000, City: "Leaf Village", Country: "Anime"));
 
             EmployeePayRollOperation employeePayRollOperation = new EmployeePayRollOperation();
-            employeePayRollOperation.addEmployeeToParollList(employees);
+            // employeePayRollOperation.addEmployeeToParollList(employees);
+
+            employeePayRollOperation.addEmployeeToParollListWithThread(employees);      
         }
     }
 }
