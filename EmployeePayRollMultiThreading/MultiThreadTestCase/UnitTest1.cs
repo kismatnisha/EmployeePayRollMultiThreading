@@ -1,8 +1,23 @@
-﻿namespace EmployeePayRollMultiThreading
+using EmployeePayRollMultiThreading;
+using NUnit.Framework;
+
+namespace MultiThreadTestCase
 {
-    internal class Program
+    [TestClass]
+    public class UnitTest1
     {
-        static void Main(string[] args)
+
+        EmployeePayRollOperation employeePayrollOperations;
+        [SetUp]
+        public void Setup()
+        {
+            employeePayrollOperations = new EmployeePayRollOperation();
+        }
+        /// <summary>
+        /// UC-1
+        /// </summary>
+        [Test]
+        public void Given10Employee_WhenAddToList_ShouldMatchEmployeeEntries()
         {
             List<EmployeeDetails> employees = new List<EmployeeDetails>();
             employees.Add(new EmployeeDetails(EmployeeID: 1, EmployeeName: "Eren", PhoneNumber: "8106529025", Address: "Attack On Titan", Department: "Survey Corpes", Gender: 'M', BasicPay: 25000, Deductions: 200, TaxablePay: 200, Tax: 100, NetPay: 24000, City: "shinsengumi", Country: "Anime"));
@@ -16,8 +31,11 @@
             employees.Add(new EmployeeDetails(EmployeeID: 9, EmployeeName: "Nami", PhoneNumber: "8123429025", Address: "OnePiece", Department: "Navigator", Gender: 'F', BasicPay: 460000, Deductions: 300, TaxablePay: 100, Tax: 100, NetPay: 45000, City: "Grand Blue", Country: "Anime"));
             employees.Add(new EmployeeDetails(EmployeeID: 10, EmployeeName: "Naruto", PhoneNumber: "8123429025", Address: "Naruto", Department: "Hokage", Gender: 'M', BasicPay: 550000, Deductions: 300, TaxablePay: 100, Tax: 100, NetPay: 540000, City: "Leaf Village", Country: "Anime"));
 
-            EmployeePayRollOperation employeePayRollOperation = new EmployeePayRollOperation();
-            employeePayRollOperation.addEmployeeToParollList(employees);
+            employeePayrollOperations = new EmployeePayRollOperation();
+            DateTime StartDateTime = DateTime.Now;
+            employeePayrollOperations.addEmployeeToParollList(employees);
+            DateTime stopDateTime = DateTime.Now;
+            Console.WriteLine("Duration Without thread: " + (stopDateTime - StartDateTime));
         }
     }
 }
